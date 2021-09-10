@@ -1,0 +1,462 @@
+<!DOCTYPE html> <!--  -->
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Jan Toleu">
+	<meta name="description" content="HTML tutorial">
+	<meta name="keywords" content="content model, block element, phrasing element, character reference">
+	<title>Правила CSS</title>
+	<style>
+		figure {text-align: center;}
+		p {text-indent: 1em;}
+		p {margin-top: 0;}
+		h4 {margin-bottom: 0;}
+		h3 {margin-bottom: 0.5em;}
+		.underlined {text-decoration: underline;}
+		.normal {font-style: normal;}
+		.oblique {font-style: oblique;}
+		.italics {font-style: italic;}
+		.initial {font-style: initial;}
+		.title {font-variant: small-caps;}
+		#boldest {font-weight: 900;}
+		#bold {font-weight: 700;}
+		#normal {font-weight: 400;}
+		#thin {font-weight: 200;}
+		#thinnest {font-weight: 100;}
+		#smallest {font-size: xx-small;}
+		#x-small {font-size: x-small;}
+		#small {font-size: small;}
+		#smaller {font-size: smaller;}
+		#larger {font-size: larger;}
+		#large {font-size: large;}
+		#x-large {font-size: x-large;}
+		#largest {font-size: xx-large;}
+		#courier {font-family: "Courier New", monospace;}
+		#times {font-family: "Times New Roman", serif;}
+		#sans {font-family: "Arial", sans-serif;}
+		#cursive {font-family: "Monotype Corsiva", cursive;}
+		#fantasy {font-family: "Impact", fantasy;}
+		.table {display: table; border-spacing: 10px;}
+		.tablerow {display: table-row;}
+  	.tablerow > :first-child {font-family: monospace;}
+  	.table > :first-child { font-family: Arial; font-size: 1.2em;}
+		.tablehead {display: table-cell; font-weight: bold; background-color: lightyellow;}
+		.tabledata {display: table-cell; background-color: lightblue;}
+		blockquote {font: italic large "Arial Black", Helvetica, sans-serif;}
+		#solid {border-style: solid;}
+		#dashed {border-style: dashed;}
+		#dotted {border-style: dotted;}
+		#double {border-style: double;}
+		.boxed {border-style: solid;border-width: 4px 2px 0px 2px; border-color: rgb(128, 128, 255);}
+		.hot {background-color: red;}
+		.cold {background-color: blue;}
+		.label {
+		color: white;
+		font: bold xx-large Lucida, monospace;
+		border: solid black;
+		border-radius: 50%;
+		padding: 20px;
+		margin: 20px;
+		display: inline-block;
+	  }
+	//  body {margin: 10%;}
+</style>
+</head>
+<body>
+<h1>Правила CSS</h1>
+<p>Текущей версией является CSS3. Несмотря на то, что спецификация CSS4 уже разработана, она пока поддерживается не всеми основными браузерами, поэтому текущей версией признается CSS3.</p>
+<h2>Универсальный селектор и селекторы типов</h2>
+<pre>
+&lt;style&gt;
+  * {text-align: center;} //универсальный селектор (весь текст будет<br> выровнен по центру, элементы, не содержащие текст, не выравниваются)
+  hr {width: 50%;} //селектор элемента горизонтальная линия
+  h2, p {font-style: italic; color: blue;} //комбинированный селектор
+&lt;/style&gt;
+</pre>
+<h2>Селектор класса</h2>
+<pre>
+&lt;style&gt;
+  .red {background-color: tomato;}
+  .white {background-color: white;}
+  .blue {background-color: skyblue;}
+  q {font-family: Impact;}
+&lt;/style&gt;
+</pre>
+<h3>Селектор класса с приставкой из типа элемента</h3>
+<pre>  q.blue {background-color: skyblue;}</pre>
+Применяется к классу blue только в элементах цитирования &lt;q&gt;&lt;/q&gt;
+
+<h2>Каскадные таблицы стилей</h2>
+<p>
+	Для того, чтобы не возникло противоречий при примененеии правил CSS, в данном своде правил существует приоритетность применения правил.<br>
+	Следующий список показывает приоритет различных уровней правил стиля, начиная с самого высокого приоритета к самому низкому:<br>
+	<ol>
+		<li>Атрибут <code>style</code> в любом элементе</li>
+		<li>Элемент <code>style</code> в разделе веб-страницы <code>head</code></li>
+		<li>Правила во внешнем файле</li>
+		<li>В настройках пользователя для установленного браузера</li>
+		<li>Во внутренних настройках браузера по умолчанию</li>
+	</ol>
+<div>
+	Пример применения атрибута <code>style</code> только в одном из элементов &lt;h2&gt;&lt;/h2&gt;:<br>
+	<code>&lt;h2 style="text-decoration:underline;"&gt;Welcome!&lt;/h2&gt;</code><br>
+	Результат отображается в браузере следующим образом:
+	<h2 style="text-decoration:underline;">Welcome!</h2>
+	Но такого применения следует избегать, хотя его часто можно встретить в устаревшем коде (legacy code). Такое применение сильно затрудняет дальнейшую поддержку веб-страницы, поскольку необходимо производить изменения во всех отдельных элементах веб-страниц, а не в одном месте в элементе стиля или в файле стиля. Раньше такое применение называлось встроенными стилями (<em>inline styles</em>).<br>
+	Тем не менее, правило, установленное в виде атрибута <code>style</code>, будет иметь более высокий приоритет, чем правило, установленное в контейнере <code>style</code> в соответствии с приоритетами в каскадной таблице стилей.
+</div>
+<p>
+	Для указания на внешний файл стилей в отдел &lt;head&gt;&lt;/head&gt; веб-страницы вставляют элемент &lt;link&gt;&lt;/link&gt; с атрибутами <code>rel</code> и <code>href</code>:<br>
+	<code>&lt;link rel="stylesheet" href="name-of-external-file"&gt;</code><br>
+	Атрибут <code>rel</code> указывает браузеру на тип файла стилей, а атрибут <code>href</code> указывает браузеру на местоположение и название файла стилей.
+</p>
+Чем выгодно использование внешнего файла стилей?<br>
+Оно позволяет использовать общие правила CSS для всех веб-страниц проекта, что делает их единообразными.<br><br>
+<p>
+	Организация W3C больше не использует название "внешний файл стилей" (<em>external style sheet</em>), но оно прочно устоялось среди веб-разработчиков.
+</p>
+<h2>Цветовые свойства</h2>
+<div>
+	Цвет в свойстве стилей <code>color</code> указывается разными способами:
+	<ul>
+		<li><code>.black {background-color: rgb(0%,0%,0%);}</code> - с указанием знака процента насыщенности трех цветов</li>
+		<li><code>.favorite1 {color: rgb(127,127,127);}</code> - с указанием степени цветовой насыщенности в диапазоне от 0 до 255</li>
+		<li><code>.favorite2 {color: rgba(127,127,127,0.5);}</code> - с указанием степени насыщенности цвета в диапазоне от 0 до 255 и степени непрозрачности (opacity) в диапазоне от 0 до 1</li>		
+		<li><code>.sapphire {background-color: #0f42ba;}</code> - с указанием степени цветовой насыщенности в диапазоне от 0 до f (шестнадцатиричная система счисления)</li>
+		<li><code>p {background-color: hsl(120,50%,75%);}</code> - с указанием цвета (hue) в диапазоне от 0 до 360 градусов по цветовому колесу (red - 0/360, yellow - 60, green - 120, cyan - 180, blue - 240, magenta - 300); степени насыщенности цвета (saturation) в диапазоне от 0 до 100%; степени яркости цвета в диапазоне от 0 до 100%</li>
+		<li><code>.background {background-color: hsla(120,50%,75%,.5);}</code> - та же система hsl, но с добавлением степени непрозрачности (opacity) в диапазоне от 0 до 1</li>
+	</ul>
+</div>
+<h2>Свойства шрифта</h2>
+<div>
+	<h3>Свойство font-style</h3>
+	<p>Свойство font-style имеет следующие значения:<br>
+		<ul>
+			<li>normal - вертикальный</li>
+			<li>oblique - наклонный</li>
+			<li>italic - курсив</li>
+			<li>initial - изначальный</li>
+		</ul>
+		<div class=normal>Font-style: normal</div>
+		<div class=oblique>Font-style: oblique</div>
+		<div class=italics>Font-style: italic</div>
+		<div class=initial>Font-style: initial</div>		
+	</p>
+</div>
+<div>
+	<h3>Свойство font-variant</h3>
+	<p>Свойство font-variant определяет вид строчных букв на экране:<br>
+		<ul>
+			<li>normal - обычный вид строчных букв</li>
+			<li>small-caps - выглядят, как прописные буквы, уменьшенные до высоты строчных</li>
+		</ul>
+		<code>.title {font-variant: small-caps;}<br>
+...<br>
+&lt;div class="title"&gt;The Great Gatsby&lt;/div&gt;</code><br><br>
+<em>Выглядит в браузере, как:</em><br>
+<div class="title">The Great Gatsby</div>
+	</p>
+</div>
+<div>
+	<h3>Свойство font-weight</h3>
+	<p>Свойство font-variant толщину букв на экране:<br>
+		<ul>
+			<li>normal, bold - браузер определяет, как выглядят нормальные или жирные буквы</li>
+			<li>bolder - текст, окруженный контейнером со свойством <code>bolder</code> выглядит более жирным, чем остальной текст</li>
+			<li>lighter - текст, окруженный контейнером со свойством <code>lighter</code> выглядит более тонким, чем остальной текст</li>
+			<li>100, 200, 300, 400, 500, 600, 700, 800, 900 - 400 такой же, что и нормальный текст, а 700 такой же, что и жирный текст.</li>
+		</ul>
+	<span id=boldest>Самый жирный текст (900)</span><br>
+	<span id=bold>Жирный текст (700)</span><br>
+	<span id=norm>Нормальный текст (400)</span><br>
+	<span id=thin>Тонкий текст (200)</span><br>
+	<span id=thinnest>Самый тонкий текст (100)</span>
+	</p>
+</div>
+<div>
+	<h3>Свойство font-size</h3>
+	<p>Свойство font-size задает размер шрифта текста:<br>
+		<ul>
+			<li>xx-small, x-small, small, medium, large, x-large, xx-large - браузер определяет размер шрифтов xx-small, x-small, small и т.д.</li>
+			<li>smaller - более мелкий шрифт, чем окружающий</li>
+			<li>larger - более крупный шрифт, чем окружающий</li>
+		</ul>
+	<span id=smallest>Самый мелкий шрифт (xx-small)</span><br>
+	<span id=x-small>Не самый мелкий шрифт (x-small)</span><br>
+	<span id=small>Мелкий шрифт (small)</span><br>
+	<span id=smaller>Шрифт мельче (smaller)</span><br>
+	<span id=larger>Шрифт крупнее (larger)</span><br>
+	<span id=large>Крупный шрифт (large)</span><br>
+	<span id=x-large>Не самый крупный шрифт (x-large)</span><br>
+	<span id=largest>Самый крупный шрифт (xx-large)</span><br>
+	</p>
+</div>
+<div>
+	Шрифты чаще всего определяют в долях от нормальной высоты строчных букв:<br>
+	<code>.disclaimer {font-size: .5em;}</code><br>
+	<code>.advertisement {font-size: 3em;}</code><br><br>
+</div>
+<div>
+	Шрифты можно определять в абсолютных единицах:<br>
+	in, cm, mm, px, pt (point) или pc (pica)<br>
+	где in = 6pc<br><br>
+</div>
+<div>
+	Шрифты можно определять в относительных единицах:<br>
+	em, rem, ex<br>
+	Один rem (от «root em», т.е. «корневой em» или «em корневого элемента») — это размер шрифта корневого элемента в документе. В отличие от em, который может быть для каждого элемента свой, rem для всего документа один и тот же.<br>
+	Относительно новые единицы vw (view width) и vh (view height) определяют 1/100 часть (процент) от ширины и высоты видимого окна. Есть также единицы vmax и vmin.
+</div> 
+<div>
+	<h3>Свойство font-family</h3>
+	<p><code>.ascii-art {font-family: Courier, Prestige, monospace;}</code><br>
+		Последний шрифт в списке должен быть обобщенным шрифтом, вариант которого всегда имеется в операционной системе. Название такого текста начинается со строчной буквы и оно указывает компьютеру выбрать имеющийся шрифт из указанного семейства.<br>
+		Для того, чтобы шрифты отображались одинаково в разных браузерах, необходимо, чтобы все выбранные для данного свойства шрифты происходили из одного семейства шрифтов.<br>
+		Браузеры распознают и поддерживают пять семейств обобщенных шрифтов:<br>
+	<div class=table>
+		<div class=tablerow>
+			<span class=tablehead>Название семейства шрифтов</span>
+			<span class=tablehead>Описание шрифта</span>
+			<span class=tablehead>Пример шрифта</span>
+	</div>
+		<div class=tablerow>
+			<span class=tabledata>monospace</span>
+			<span class=tabledata><span id="courier">У всех букв одинаковая ширина</span></span>
+			<span class=tabledata><span id="courier">Шрифт Courier New</span></span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>serif</span>
+			<span class=tabledata><span id="times">Буквы имеют украшения</span></span>
+			<span class=tabledata><span id="times">Шрифт Times New Roman</span></span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>sans-serif</span>
+			<span class=tabledata><span id="sans">У букв отсутствуют украшения</span></span>
+			<span class=tabledata><span id="sans">Шрифт Arial</span></span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>cursive</span>
+			<span class=tabledata><span id="cursive">Имитирует написанный от руки текст</span></span>
+			<span class=tabledata><span id="cursive">Шрифт Monotype Corsiva</span></span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>fantasy</span>
+			<span class=tabledata><span id="fantasy">Декоративный и игривый стиль шрифта</span></span>
+			<span class=tabledata><span id="fantasy">Шрифт Impact</span></span>
+		</div>
+	</div>
+	</p>
+</div>
+<div>
+	<h3>Определение значений для шрифта без указания свойств шрифта</h3>
+	<p>
+		Можно использовать сокращенную форму определения значений для шрифта:<br>
+		<code>&nbsp;&nbsp;blockquote {font: italic large "Arial Black", Helvetica, sans-serif;}</code><br>
+		<blockquote>
+			{font: font-style font-variant font-weight font-size font-family;}
+		</blockquote><br>
+		Для этого берется обобщенное свойство для шрифтов <code>font</code> и к нему прилагаются все значения нужных свойств разделенные пробелом без запятых. Можно указывать значения не для всех свойств, но для свойств <code>font-size</code> и <code>font-family</code> значения обязательны для указания. В вышеуказанном примере приведены обязательные значения <code>large</code> и <code>"Arial Black", Helvetica, sans-serif</code>
+	</p>
+</div>
+<div><h2>Cвойства текста</h2>
+	<p>
+		<h3>Свойство <code>line-height</code></h3>
+	Свойство line-height относится не к самому шрифту, а к расстоянию между строками, то есть это свойство текста, а не шрифта. Его можно указывать в единицах em или в процентах. 3em это то же самое, что 300%<br>
+	<code>.proof-reading {line-height: 300%;}</code>
+	</p>
+	<p>
+		<h3>Свойство <code>text-align</code></h3>
+	Свойство <code>text-align</code> определяет горизонтальное выравнивание блока текста<br>
+	Свойство имеет следующие значения:<br>
+
+	<div class=table>
+		<div class=tablerow>
+			<span class=tablehead>Значения свойства <code>text-align</code></span>
+			<span class=tablehead>Описание свойства</span>
+	</div>
+		<div class=tablerow>
+			<span class=tabledata>left</span>
+			<span class=tabledata>Выравнивает текст по левому краю</span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>right</span>
+			<span class=tabledata>Выравнивает текст по правому краю</span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>center</span>
+			<span class=tabledata>Выравнивает текст по центру</span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>justify</span>
+			<span class=tabledata>Вытягивает строки от левого до правого края, выравнивая текст по обеим сторонам</span>
+		</div>
+	</div>
+	</p>
+	<p>
+		<h3>Свойство <code>text-decoration</code></h3>
+	Свойство <code>text-decoration</code> определяет декоративные элементы текста<br>
+	Свойство имеет следующие значения:<br>
+
+	<div class=table>
+		<div class=tablerow>
+			<span class=tablehead>Значения свойства <code>text-decoration</code></span>
+			<span class=tablehead>Описание свойства</span>
+	</div>
+		<div class=tablerow>
+			<span class=tabledata>none</span>
+			<span class=tabledata>Никаких декоративных элементов</span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>underline</span>
+			<span class=tabledata>Подчеркивание текста</span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>overline</span>
+			<span class=tabledata>Линия над текстом</span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>line-through</span>
+			<span class=tabledata>Перечеркивание текст</span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>blink</span>
+			<span class=tabledata>Мигающий текст</span>
+		</div>
+	</div>
+	</p>
+	<p>
+		<h3>Свойство <code>text-transform</code></h3>
+	Свойство <code>text-transform</code> определяет строчные или прописные буквы шрифта<br>
+	Оно имеет следующие значения:<br>
+
+	<div class=table>
+		<div class=tablerow>
+			<span class=tablehead>Значения свойства <code>text-transform</code></span>
+			<span class=tablehead>Описание свойства</span>
+	</div>
+		<div class=tablerow>
+			<span class=tabledata>none</span>
+			<span class=tabledata>Выводится обычный текст</span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>capitalize</span>
+			<span class=tabledata>Первая буква каждого слова становится прописной</span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>uppercase</span>
+			<span class=tabledata>Все буквы становятся прописными</span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>lowercase</span>
+			<span class=tabledata>Все буквы становятся строчными</span>
+		</div>
+	</div>
+	</p>
+	<p>
+		<h3>Свойство <code>text-indent</code></h3>
+	Свойство <code>text-indent</code> определяет размер отступа первой строки блока текста:<br>
+	p {text-indent: 4em;}<br>
+	На данной веб-странице используется отступ 1em
+	</p>
+</div>
+<div>
+	<h2>Свойства границ</h2>
+	<h3>Свойство <code>border-style</code></h3>
+	<p>
+		Свойство <code>border-style</code> определяет тип границы, которая окружает соответствующий элемент<br>
+		Ниже указаны значения свойства <code>border-style</code>:<br>
+	<div class=table>
+		<div class=tablerow>
+			<span class=tablehead>Значения свойства <code>border-style</code></span>
+			<span class=tablehead>Описание свойства</span>
+	</div>
+		<div class=tablerow>
+			<span class=tabledata>none</span>
+			<span class=tabledata>Браузер не показывает никаких границ. Это значение по умолчанию.</span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>solid</span>
+			<span class=tabledata id="solid"> </span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>dashed</span>
+			<span class=tabledata id="dashed"> </span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>dotted</span>
+			<span class=tabledata id="dotted"> </span>
+		</div>
+				<div class=tablerow>
+			<span class=tabledata>double</span>
+			<span class=tabledata id="double"> </span>
+		</div>
+	</div>
+	</p>
+		<h3>Свойство <code>border-width</code></h3>
+	<p>
+		Свойство <code>border-width</code> определяет толщину границы, которая окружает соответствующий элемент<br>
+		Ниже указаны значения свойства <code>border-width</code>:<br>
+	<div class=table>
+		<div class=tablerow>
+			<span class=tablehead>Значения свойства <code>border-width</code></span>
+			<span class=tablehead>Описание свойства</span>
+	</div>
+		<div class=tablerow>
+			<span class=tabledata>thin, medium, thick</span>
+			<span class=tabledata>Браузер определяет толщину границы. По умолчанию - medium.</span>
+		</div>
+		<div class=tablerow>
+			<span class=tabledata>Количество единиц px</span>
+			<span class=tabledata>Единица пикселя в CSS является размером пикселя на мониторе, когда коэффициент зуммирования находится в положении по умолчанию 100%</span>
+		</div>		
+	</div>
+	Чтобы использовать свойство <code>border-width</code> необходимо включить одно из значений свойства <code>border-style</code>, чтобы граница стала видимой.
+	<pre>
+  .boxed {
+    border-style: solid;
+    border-width: 4px 2px 0px 2px;
+    border-color: rgb (128,128,255);
+  }<br>
+  My idol is <span class="boxed">Tim Berners-Lee</span>. He rocks!
+  </pre>
+	</p>
+			<h3>Свойство <code>border-color</code></h3>
+	<p>Свойство <code>border-color</code> определяет цвет границы выбранного элемента. Цвет можно выбрать по цветовым системам RGB, RGBA, HSL, HSLA.<br><br>
+		My idol is <span class="boxed">Tim Berners-Lee</span>. He rocks!
+	</p>
+			<h3>Использование <code>border</code> для сокращенной установки значений свойств</h3>
+	<p>	
+Так же, как и для сокращенной записи свойств <code>font</code> значения свойств пишутся через пробелы, без запятых.<br>
+		<pre>
+    .understated-box {border: thin dotted blue;}
+    .in-your-face-box {border: 10px solid;}
+	  </pre>
+  </p>
+  <h2>Использование свойств <code>padding</code> и <code>margin</code>, а также закругления <code>border-radius</code></h2>
+  <pre>
+    .hot {background-color: red;}
+    .cold {background-color: blue;}
+    .label {
+    color: white;
+    font: bold xx-large Lucida, monospace;
+    border: solid black;
+    border-radius: 50%;
+    padding: 20px;
+    margin: 20px;
+    display: inline-block;
+    }<br>
+    &lt;span class="hot label">HOT&lt;/span&gt;
+    &lt;span class="cold label">COLD&lt;/span&gt;
+   </pre>
+  <div>
+  	<span class="hot label">HOT</span>
+    <span class="cold label">COLD</span>
+  </div>
+</div>
+<h2>Использование процентного отношения для отступа веб-страницы</h2>
+<div>
+  Для свойства <code>margin</code> иногда лучше использовать не абсолютные значения в пикселях (px), а относительные значения в процентах. Например, когда необходимо сделать отступы для всей страницы, которые будут меняться по мере изменения ширины окна браузера:<br>
+  <pre>  body {margin: 10%;}</pre>
+</div>
+</body> 
+</html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html> <!--  -->
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Jan Toleu">
+	<meta name="description" content="HTML tutorial">
+	<meta name="keywords" content="content model, block element, phrasing element, character reference">
+	<title>Правила CSS</title>
+  <style>
+    table, th, td {border: thin solid;}
+    caption {font-weight: bold; font-family: Arial, sans-serif;}
+    h3 {text-align: center;}
+    table {border-collapse: collapse; margin: 0 auto;}
+    th, td {border: thin solid; padding: 2px 5px;}
+    td:nth-of-type(3), td:nth-of-type(4) {text-align: right;}
+    tr:first-of-type {background-color: palegreen;}
+    tr:nth-of-type(2n+3) {background-color: palegoldenrod;}
+    .table {display: table; border-spacing: 5px;}
+    .table-caption {display: table-caption; text-align: center; font-weight: bold; font-family: Arial, sans-serif;}
+    .table-row {display: table-row;}
+    .table-cell {display: table-cell; border: solid red;}
+    .table-header-group {display: table-header-group; font-weight: bold; text-align: center;}
+    .table-row-group {display: table-row-group;}
+.title {
+position: absolute;
+left: 10px; top: 4940px;
+width: 620px; height: 30px;
+text-align: center;
+font-size: 20pt;
+}
+article {
+position: absolute;
+top: 5000px;
+width: 300px; height: 180px;
+text-align: justify;
+font-size: 12pt;
+}
+article.left {left: l0px;}
+article.right {left: 330px;}
+.absolute {margin: 0; padding: 0;}
+
+.up {
+position: relative;
+top: -1em;
+}
+.down {
+position: relative;
+top: 2em;
+left: 2em;
+}
+
+  </style>
+}
+</head>
+<body>
+<h2>Элементы таблицы</h2>
+
+<p>
+  Следующий код демонстрирует элементы: <code>&lt;table&gt;&lt;/table&gt;, &lt;tr&gt;&lt;/tr&gt;, &lt;th&gt;&lt;/th&gt;, &lt;td&gt;&lt;/td&gt;, а также &lt;caption&gt;&lt;/caption&gt;</code>
+</p>
+<code><pre>
+&lt;!DOCTYPE html>
+&lt;html lang="en">
+&lt;head>
+&lt;meta charset="utf-8">
+&lt;meta name="author" content="John Dean">
+&lt;title>Wind Disasters&lt;/title>
+&lt;style>
+  table, th, td {border: thin solid;}
+&lt;/style>
+&lt;/head>
+&lt;body>
+&lt;table>
+  &lt;caption>Wind Disasters&lt;/caption>
+  &lt;tr>&lt;th>Tornadoes&lt;/th>&lt;th>Hurricanes&lt;/th>&lt;/tr>
+  &lt;tr>&lt;td>Joplin, Missouri&lt;/td>&lt;td>Katrina&lt;/td>&lt;/tr>
+  &lt;tr>&lt;td>Tri-State&lt;/td>&lt;td>Andrew&lt;/td>&lt;/tr>
+  &lt;tr>&lt;td>Waco, Texas&lt;/td>&lt;td>Galveston&lt;/td>&lt;/tr>
+&lt;/table>
+&lt;/body>
+&lt;/html>
+</code></pre>
+<div>
+  И генерирует следующую таблицу:
+<p>
+<table>
+<caption>Бедствия, вызванные ветром</caption>
+<tr><th>Торнадо</th><th>Ураганы</th></tr>
+<tr><td>Joplin, Missouri</td><td>Katrina</td></tr>
+<tr><td>Tri-State</td><td>Andrew</td></tr>
+<tr><td>Waco, Texas</td><td>Galveston</td></tr>
+</table>
+</p>
+<p>
+<pre><code>
+&lt;style>
+  table, th, td {border: thin solid;}
+&lt;/style>
+</code></pre>
+  Вышеуказанный код CSS создает границу вокруг всей таблицы и вокруг отдельных ячеек таблицы:
+В данном коде атрибут границы указан в сокращенном варианте, где <code>border-width: thin;</code>, а <code>border-style: solid;</code>
+Если необходимо, чтобы заголовок таблицы находился не сверху нее, а снизу, то нужно добавить строчку кода:
+<pre><code>
+  caption {caption-side: bottom;}
+</code></pre>
+В элементах заголовков <code><th></th></code> шрифт по умолчанию показывается жирным.
+<p>
+  Если необходимо, чтобы заголовок таблицы находился не сверху нее, а снизу, то нужно добавить строчку кода:<br> <code>caption {caption-side: bottom;}</code>
+</p>
+<p>
+  Если необходимо, чтобы границы таблицы слились и перестали выглядеть двойными, то нужно добавить строчку кода:<br> <code>table {border-collapse: collapse;}</code>
+</p>
+<h3>Селекторы псевдо-классов</h3>
+<p>
+  Использование селекторов псевдо-классов позволяет избежать вставки пары <code>class="value"</code> в начальные теги нужных элементов по всей веб-странице, если нам вдруг понадобилось выделить определенную группу элементов в коде CSS.
+  Например, строчка <code>tr:first-of-type {background-color: palegreen;}</code> выделяет фоновым цветом все первые элементы в какой либо группе, в примере это элемент <code>&lt;tr>&lt;/tr></code> первого ряда в таблице. Иначе говоря, псевдо-классы позволяют отказаться от использования атрибута <code>class</code>. Псевдо-классы обеспечивают выбор среди дочерних элементов.
+</p>
+<table>
+  <caption>Наиболее популярные селекторы структурных псевдо-классов</caption>
+  <tr><th>Псевдо-класс</th><th>Описание</th></tr>
+  <tr><td>:first-of-type</td><td>Выбирает первый элемент в группе дочерних элементов</td></tr>
+  <tr><td>:last-of-type</td><td>Выбирает последний элемент в группе дочерних элементов</td></tr>
+  <tr><td>:nth-of-type()</td><td>Использует значение в скобках, чтобы выбрать элемент или группу элементов</td></tr>
+</table> 
+<p>
+  Псевдо-класс <code>:nth-of-type()</code> является наиболее гибким. В скобках может быть целое число, указывающее на элемент. Может стоять слово <code>even</code> или <code>odd</code>, указывающее на четные или нечетные элементы. Можно также в скобках привести выражение типа (5n+2) - каждый пятый элемент, начиная со второго, то есть 2, 7, 12, 17 и т.д.
+</p>
+<table>
+<caption>
+<h3>Выработка энергии в полдень (положительная) и потребление (отрицательная)</h3>
+</caption>
+<tr>
+<th>Описание компонента</th> <th>Полный размер</th>
+<th>Энергия в полдень</th> <th>Стоимость с учётом монтажа</th>
+</tr>
+<tr>
+<td>Коллектор солнечной фотоэлектрической энергии</td> <td>Площадь панелей - 137 м<sup>2</sup></td>
+<td>+18 кВт</td> <td>$45,000</td>
+</tr>
+<tr>
+<td>Немедленное потребление</td> <td>Общая площадь - 274 м<sup>2</sup></td>
+<td>-5 кВт</td><td> </td>
+</tr>
+<tr>
+<td>Хранилище охлажденной воды</td> <td>диаметр 2,3 м x высота 2,1 м</td>
+<td>-2 кВт</td> <td>$1000</td>
+</tr>
+<tr>
+<td>Хранилище батарей</td> <td>1.3 м x 1.0 м x 1.1 м высоты, 1250кг</td>
+<td>+18 кВт</td> <td>$6000</td>
+</tr>
+</table>
+<p>
+  <h3>Объединение ячеек</h3>
+  Атрибуты <code>rowspan="n"</code> или <code>colspan="m"</code> примененные в начальных тегах элементов <code>th</code> и <code>td</code> позволяют объединять ячейки таблиц.
+</p>
+<div>
+<table>
+<caption>Мои любимые эры</caption>
+<thead>
+<tr><th>Эры</th><th colspan="2">События</th></tr>
+</thead>
+<tbody>
+<tr>
+<th rowspan="2">Мезозойская<br>от 251 до 65.5 миллионов лет назад</th>
+<td>Эволюционное расхождение между рептилиями и динозаврами</td>
+<td>235 миллионов лет назад</td>
+</tr>
+<tr>
+<td>Южная Америка откалывается от Африки</td>
+<td>105 миллионов лет назад</td>
+</tr>
+<tr>
+<th rowspan="3">Кайнозойская<br>65.5  миллионов лет назад до сегодняшнего дня</th>
+<td>Появление современных млекопитающих</td>
+<td>40 миллионов лет назад</td>
+</tr>
+<tr><td>Появление первого орудия</td><td>2 миллиона лет назад</td></tr>
+<tr>
+<td>Первый тур для повторного объединения группы Роллинг Стоунз</td>
+<td>11,000 лет назад</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>
+  Заголовок таблицы можно снабдить элементом <code>&lt;details&gt;&lt;/details&gt;</code>, который содержит в себе пояснение к таблице. Под заголовком таблицы появится черный треугольник с надписью "Подробнее"(Details) справа. Чтобы заменить это слово на другое, например на слово "Помощь", можно добавить внутрь элемент <code>&lt;summary&gt;Помощь&lt;/summary&gt;</code> в верхней строке элемента <code>&lt;details&gt;&lt;/details&gt;</code>.
+  </p>
+
+<table>
+<caption>
+  Стоимость баллов по курсу Веб-программирование I
+<details>
+<summary>Помощь</summary>
+Первые три колонки показывают стоимость за 3 домашних задания.
+Следующие две колонки показывают стоимость за 2 экзамена.
+Последняя колонка показывает стоимость за осознанность во время урока.
+</details>
+</caption>
+<tr>
+<th colspan="3" id="hw">Домашние задания</th>
+<th colspan="2" id="exams">Экзамены</th>
+<th rowspan="2" id="awake">Способность<br>не засыпать</th>
+</tr>
+<tr>
+<th id="hw1" headers="hw">1</th>
+<th id="hw2" headers="hw">2</th>
+<th id="hw3" headers="hw">3</th>
+<th id="exam1" headers="exams">1</th>
+<th id="exam2" headers="exams">2</th>
+</tr>
+<tr>
+<td headers="hw hw1">10%</td>
+<td headers="hw hw2">10%</td>
+<td headers="hw hw3">10%</td>
+<td headers="exams exam1">30%</td>
+<td headers="exams exam2">36%</td>
+<td headers="awake">4%</td>
+</tr>
+</table>
+<p>
+  Чтобы облегчить чтение таблиц программами для слепых пользователей и поисковых машин, ячейки, которые соответствуют одновременно разным ячейкам над ними, снабжаются атрибутом <code>headers</code>, которому присваивают значения, соответствующие идентификаторам <code>id</code>, заранее присвоенным вышележащим ячейкам. У атрибута <code>headers</code> может быть несколько значений, разделенных пробелами.
+</p>
+<p>
+  Если таблица используется не с целью группирования данных, а с целью представить изображения, упорядоченные в виде таблиц, то элемент <code>&lt;table&gt;&lt;/table&gt;</code> должен содержать атрибут <code>role</code> со значением <code>presentation</code>:<br>
+  <code>&lt;table role="presentation"&gt;</code>
+</p>
+<p>
+  Но правильным способом использования табличного представления данных для их визуального выравнивания и отображения на экране является применение одного из двух способов с использованием CSS:<br>
+  в первом способе применяется свойство <code>display</code> к табличным значениям и тогда границы ячеек в таблице будут увеличиваться и сжиматься, как это делается для элемента HTML <code>table</code><br>
+  во втором способе используются свойства позиционирования CSS и тогда границы остаются фиксированными.
+  </p>
+  <p>
+    <h3>1.  Таблица значений свойства <code>display</code></h3>
+    До сих пор мы использовали свойство <code>display</code> в паре <code>display: inline</code> для визуализации элемента <code>address</code> (который в норме является блочным элементом). Но это свойство можно также использовать для эмуляции различных частей таблицы. 
+<pre>
+  &lt;style>
+    .table {display: table;}
+    ...
+  &lt;/style>
+  &lt;body>
+  &lt;div class="table">
+    ...
+  &lt;/div>
+  &lt;/body>
+</pre>
+В данном коде для элемента <code>div</code> используется селектор класса <code>table</code>. Можно использовать любое другое название селектора, чтобы не путать его со значением свойства в паре: <code>display: table;</code>. Данное значение заставляет любой выбранный элемент вести себя, как таблица.
+</p>
+
+<div class="table">
+  <div class="table-caption">Табличные значения для свойства CSS <code>property</code></div>
+  <div class="table-header-group">
+  <div class="table-row"><div class=table-cell>Табличные значения для свойства <code>Property</code></div><div class=table-cell>Свойства</div></div>
+  </div>
+  <div class="table-row-group">
+  <div class="table-row"><div class=table-cell><code>table</code></div><div class=table-cell>Заставляет элемент вести себя, как таблица</div></div>
+  <div class="table-row"><div class=table-cell><code>table-caption</code></div><div class=table-cell>Заставляет элемент вести себя, как элемент таблицы <code>caption</code></div></div>
+  <div class="table-row"><div class=table-cell><code>table-row</code></div><div class=table-cell>Заставляет элемент вести себя, как элемент таблицы <code>tr</code></div></div>
+  <div class="table-row"><div class=table-cell><code>table-cell</code></div><div class=table-cell>Заставляет элемент вести себя, как элемент таблицы <code>td</code> или <code>th</code></div></div>
+  <div class="table-row"><div class=table-cell><code>table-header-group</code></div><div class=table-cell>Заставляет элемент вести себя, как элемент таблицы <code>thead</code></div></div>
+  <div class="table-row"><div class=table-cell><code>table-row-group</code></div><div class=table-cell>Заставляет элемент вести себя, как элемент таблицы <code>tbody</code></div></div>
+  </div>
+</div>
+<br><br>
+<div class="table">
+<div class="table-caption">Ancient Wonders of the World</div>
+<div class="table-row">
+<span class="table-cell"><img src="pyramid.jpg" alt=""></span>
+<span class="table-cell"><img src="hangingGardens.jpg" alt=""></span>
+<span class="table-cell"><img src= "colossus.jpg" alt=""></span>
+</div>
+<div class="table-row">
+<span class="table-cell">Great Pyramid of Giza</span>
+<span class="table-cell">Hanging Gardens of Babylon</span>
+<span class="table-cell">Colossus of Parkville</span>
+</div>
+</div>
+<p>
+<h3>2.  Абсолютное позиционирование с помощью свойств позиционирования CSS</h3>
+  При таком позиционировании размеры ячеек таблицы будут фиксированными. Это необходимо, например, если стоит задача выдерживать одну и ту же ширину газетных колонок в статье.<br>
+</p>
+<p>
+  У браузеров по умолчанию используется схема компоновки <em>normal flow (нормальный поток)</em>, когда блочные элементы располагаются сверху вниз отдельно каждый в своем ряду, а фразовые элементы располагаются справа налево, занимая свободное пространство.<br>
+  Чтобы вывести элемент из нормального потока, можно использовать свойства позиционирования CSS, показанные в таблице ниже.
+</p>
+<table>
+  <caption>Свойства позиционирования CSS</caption>
+<thead>
+  <tr><th>Свойства позиционирования CSS</th><th>Описание</th></tr>
+</thead>
+<tbody>
+  <tr><td>position: absolute</td><td>Заставляет браузер располагать элемент относительно содержащего его блока (блока контейнера). В норме блок контейнера является элементом <code>&lt;html&gt;&lt;/html&gt;</code>.</td></tr>
+  <tr><td>left: значение (px или %)</td><td>Задает расстояние между левым краем блока контейнера и левым краем элемента (где левый край означает слева от любого <code>padding, border</code> или <code>margin</code>).</td></tr>
+  <tr><td>top: значение (px или %)</td><td>Задает расстояние между верхним краем блока контейнера и верхним краем элемента (где верхний край означает выше любого <code>padding, border</code> или <code>margin</code>).</td></tr>
+  <tr><td>width: значение (px или %)</td><td>Задает ширину невидимого блока, который ограничивает содержимое элемента. Ширина не включает в себя <code>padding, border</code> или <code>margin</code>).</td></tr>
+  <tr><td>height: значение (px или %)</td><td>Задает высоту невидимого блока, который ограничивает текст элемента. Высота не включает в себя <code>padding, border</code> или <code>margin</code>).</td></tr>
+</tbody>
+</table>
+<p>
+  Свойства <code>top</code> и <code>left</code> определяют, как верхний левый угол целевого элемента позиционируется относительно блока контейнера элемента. В норме блок контейнера является элементом <code>&lt;html&gt;&lt;/html&gt;</code>.
+</p>
+<p>
+  Если для элемента с абсолютным позиционированием вы не укажете ширину элемента (свойство <code>width</code>), тогда ширина элемента будет определена естественной шириной содержимого элемента. Если содержимое является изображением, то это приемлемо, поскольку в норме вы хотите, чтобы изображение отображалось в своих первоначальных размерах.<br>
+  С другой стороны, если содержимое является значительным фрагментом текста, вы захотите указать ширину элемента. Почему? Если вы не укажете ширину, то браузер попытается расширить элемент, чтобы показать весь текст в одной строке без разрывов.<br>
+  То же самое применимо к свойству <code>height</code>.
+</p>
+<p>
+  Следующий код создает схему компоновки текстовых элементов, похожую на газетные столбцы:
+<pre>
+&lt;style>
+  .title {
+    position: absolute;
+    left: 10px; top: 4940px;
+    width: 620px; height: 30px;
+    text-align: center;
+    font-size: 20pt;
+  }
+  article {
+    position: absolute;
+    top: 5000px;
+    width: 300px; height: 180px;
+    text-align: justify;
+    font-size: 12pt;
+  }
+  article.left {left: l0px;}
+  article.right {left: 330px;}
+&lt;/style>
+
+&lt;body>
+&lt;h1 class="title">Imprint Express - News From Park University&lt;/h1>
+&lt;article class="left">
+  It's Snack Attack Friday. Students and staff are welcome to
+  enjoy corn dogs, buffalo wings, and other deep-fat-fried favorites
+  at the Thompson Center, October 22 from 10 pm to midnight.
+&lt;/article>
+&lt;article class="right">
+  On Saturday, September 16, Park's ACM Club sponsored a Habitat for
+  Humanity service project in Kansas City, Kansas. Said ACM President,
+  Niren Shakya, "Me, Josh, and Aiba poured the foundation and put up
+  the walls. We plan to finish the house next Saturday."
+&lt;/article>
+&lt;/body>
+</pre>
+</p>
+
+<section class="absolute">
+<h1 class="title">Imprint Express - News From Park University</h1>
+<article class="left">
+It's Snack Attack Friday. Students and staff are welcome to
+enjoy corn dogs, buffalo wings, and other deep-fat-fried favorites
+at the Thompson Center, October 22 from 10 pm to midnight.
+</article>
+<article class="right">
+On Saturday, September 16, Park's ACM Club sponsored a Habitat for
+Humanity service project in Kansas City, Kansas. Said ACM President,
+Niren Shakya, "Me, Josh, and Aiba poured the foundation and put up
+the walls. We plan to finish the house next Saturday."
+</article>
+</section>
+
+<p>
+  <pre>
+
+
+
+
+
+
+
+
+
+
+
+  Обратите внимание, что в коде CSS значения свойства <code>top</code> для класса <code>.title</code> и для элемента <code>article</code> очень большие: 4940 и 5000 пикселей. Необходимо было спустить эти элементы ниже всего выжележащего материала. При этом, если менять ширину окна, то позиционированные элементы сдвигаются, наезжая на вышележащий или нижележащий текст.
+
+
+</pre>
+</p>
+  <h3>Относительное позиционирование</h3>
+<p><mark>
+    In <cite>Divine Comedy</cite>, Dante describes
+    the <span class="up">height of ecstasy</span>
+    and the <span class="down">depths of despair</span>.
+</p></mark><br>
+<p>
+  Элементы смещаются относительно содержащего их контейнера.
+  В данной фразе две её части сдвинуты по вертикали, а вторая еще и по горизонтали с помощью следующего кода CSS:
+  <pre>
+&lt;style>
+  .up {
+    position: relative;
+    top: -1em;
+  }
+  .down {
+    position: relative;
+    top: 2em;
+    left: 2em;
+  }
+ &lt;/style>
+<br>
+Обе сдвигаемые части фразы помещены в элементы <code>&lt;span&gt;&lt;/span&gt;</code> которым присвоены классы <code>up</code> и <code>down</code>. 
+<br>Относительное позиционирование используется редко.
+
+</body> 
+</html>

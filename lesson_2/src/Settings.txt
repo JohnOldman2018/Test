@@ -1,0 +1,16 @@
+// Settings in here override those in "Default/Preferences.sublime-settings",
+// and are overridden in turn by syntax-specific settings.
+{
+	"color_scheme": "Packages/Theme - Afterglow/Afterglow-monokai.tmTheme",
+	"font_face": "Consolas",
+	"font_size": 12,
+	"ignored_packages":
+	[
+		"Bootstrap 3 Autocomplete",
+		"Vintage"
+	],
+	"save_on_focus_lost": true,
+	"tab_size": 1,
+	"tab_small": true,
+	"theme": "Afterglow.sublime-theme",
+}

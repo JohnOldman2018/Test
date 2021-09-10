@@ -1,0 +1,162 @@
+<!DOCTYPE html> <!--  -->
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Jan Toleu">
+	<meta name="description" content="HTML tutorial">
+	<meta name="keywords" content="content model, block element, phrasing element, character reference">
+	<title>Конвенции HTML</title>
+	<style>
+		figure {text-align: center;}
+		p {margin-top: 0;}
+		h3, h4 {margin-bottom: 0;}
+		.underlined {text-decoration: underline;}
+</style>
+</head>
+<body>
+<h1>Конвенции по кодированию HTML</h1>
+<p>Поскольку компания Google является лидирующей в сфере развития сети Интернет, то большей частью данный учебный курс придерживается конвенций, принятых в компании Google</p>
+<h2>Стиль написания кода веб-страницы</h2>
+<ul>
+		<li>У каждого парного элемента должны указываться оба тега, стартовый и конечный. Хотя браузеры допускают использование только стартового тега, к примеру для &lt;p&gt;, не следует пропускать конечный тег &lt;/p&gt;</li>
+		<li>Для всех тегов и их атрибутов следует использовать строчные буквы</li>
+		<li>Для всех значений атрибутов следует использовать строчные буквы, если только нет веской причины использовать прописные начальные буквы. Например имя автора страницы content="Jan Toleu"</li>
+		<li>Строчные значения атрибутов заключают в кавычки, а вокруг знака равно не ставят пробелов</li>
+</ul>
+<h3>Комментарии</h3>
+<div>Для всех комментариев, укладывающихся в одну строку следует вставлять пробел после начального тега комментария &lt;-- и перед конечным тегом --&gt; </div><br>
+<div>Если комментарий требует более одной строки, следует ставить начальный и конечные теги комментария на отдельных строках:
+<p>&lt;!--<br>Это ооооочень длииииный комментарий, это ооооочень длииииный комментарий, это ооооочень длииииный комментарий, это ооооочень длииииный комментарий, это ооооочень длииииный комментарий<br>--&gt;</p>
+</div>
+<h3>Документация</h3>
+<p>Комментарии являются одной из форм встроенной в код документации. Элементы meta являются другой формой встроенной документации.
+Правильное использование элементов HTML само по себе является формой документации. То есть использование элементов &lt;p&gt;&lt;/p&gt; для параграфов (а не похожих элементов типа &lt;div&gt;&lt;/div&gt; или &lt;span&gt;&lt;/span&gt;) или элементов &lt;h2&gt;&lt;/h2&gt; для заголовков, а не &lt;strong&gt;&lt;/strong&gt;.</p>
+<h3>Категории модели контента (правила контейнеризации)</h3>
+<p>Данные категории позволяют ответить на вопрос: <strong> Какой контент разрешается в каждом элементе-контейнере?</strong></p>
+<p>К примеру: Контейнер элемента <code>head</code> должен содержать элемент <code>title</code>, а в контейнере элемента <code>p</code> не должны содержаться элементы <code>div</code>.</p>
+<p>Для каждого возможного элемента-контейнера (их приблизительно 101 из всех 115 элементов) должны существовать 115 правил включения остальных элементов, что дает в целом более, чем 11000 правил контейнеризации (101 х 115 = 11615).</p>
+<p>Чтобы облегчить запоминание правил контейнеризации, элементы были разбиты на семь категорий:
+<figure>
+	<img src="pictures/ContentModelCategories.png" alt="Content Model Categories">
+	<figcaption>Категории модели контента</figcaption>
+</figure>
+<h3>Блочные и фразовые элементы</h3>
+<p>
+Блочные элементы расширяются на всю ширину содержащего их контейнера. Например блочный элемент &lt;p&gt;&lt;/p&gt; расширяется на всю ширину содержащего его контейнера &lt;body&gt;&lt;/body&gt;
+</p>
+<p>
+	Фразовые элементы расширяются на ширину своего содержимого. Например фразовый элемент &lt;sup&gt;&lt;/sup&gt; расширяется до ширины своего содержимого. Таким образом на одной строке могут размещаться несколько фразовых элементов со своим содержимым. Например:<br>
+	При температуре 0С<sup>0</sup> вода (Н<sub>2</sub>О) превращается в лёд. 
+</p>
+<h3>Блочные элементы:</h3>
+<div>
+Блочный элемент &lt;blockquote&gt;&lt;/blockquote&gt; используют для многострочных цитат.
+<blockquote cite="http://www.presidency.ucsb.edu/ws/?pid=15545">
+Democracy cannot succeed unless those who express their
+choice are prepared to choose wisely. The real safeguard
+of democracy, therefore, is education.
+</blockquote>
+<div><strong>Franklin D. Roosevelt</strong>, 1938</div><br>
+</div>
+<p>
+	Начальный тег &lt;blockquote cite="http://www.presidency.ucsb.edu/ws/?pid=15545"&gt; содержит в себе атрибут <code>cite</code>, который указывает веб-разработчикам место в Интернете, откуда была взята данная цитата. Содержимое данного атрибута не видно пользователю. Кроме информации для веб-разработчика, данный атрибут можно использовать для добавления функционала элементу <code>&lt;blockquote&gt;</code>, используя данный атрибут в коде для Java Script.<br>
+	Пользователю можно показать ссылку на цитату используя элемент &lt;a&gt;&lt;/a&gt;
+</p>
+<h3>Коллапсирование пробелов</h3>
+<div>
+	Браузеры заставляют несколько последовательных пробелов или табов превращаться в один пробел, поэтому текст с такими пробелами или табами сильно изменяет свой вид, если только не использовать специальный элемент &lt;pre&gt;&lt;/pre&gt;, который сохраняет преформатированный текст неизменным на экране. Сравните один и тот же текст без использования элемента &lt;pre&gt;&lt;/pre&gt; и с ним.<br><br>
+       Life is a journey.
+Cross the rivers, climb the peaks.
+   But first check for texts.
+<pre>
+       Life is a journey.
+Cross the rivers, climb the peaks.
+   But first check for texts.
+</pre>
+</div>
+<p>Для преформатированного текста используется моноширинный шрифт.</p>
+<h4>Элементы редактирования</h4>
+<p>
+	Элемент &lt;ins&gt;&lt;/ins&gt; используется для указания на вставленный текст: <ins>Такой текст обычно вставляется редакторами при редактировании. В данном браузере этот текст выделен подчеркиванием. В разных браузерах он выделяется по разному.</ins>
+</p>
+<p>
+	Элемент &lt;del&gt;&lt;/del&gt; используется для указания на вырезанный текст. <del>Такой текст выделяется линией перечеркивающей текст.</del><br>
+	HTML is <del>boring.</del><ins>super exciting!</ins>
+</p>
+<p>
+	Элемент &lt;q&gt;&lt;/q&gt; используется для коротких цитат длиной меньше одной строки. В отличие от элемента &lt;blockquote&gt;&lt;/blockquote&gt;, элемент &lt;q&gt;&lt;/q&gt; является фразовым (phrasing/inline).
+</p>
+<p>
+		Элемент &lt;q&gt;&lt;/q&gt; используется для того, чтобы показать сам текст цитаты, в то время как элемент &lt;cite&gt;&lt;/cite&gt; указывает на название источника, откуда взяли цитату:<br>
+	In 1937, President Franklin Roosevelt stated
+<q>The test of our progress is not whether we add more
+to the abundance of those who have much it is whether
+we provide enough for those who have little.</q>
+<cite>
+	Inaugural Addresses of the Presidents of the
+United States: from George Washington to Joe Biden
+</cite>
+</p>
+<p>
+При этом содержимое элемента &lt;q&gt;&lt;/q&gt; выделяется браузером двойными кавычками, а содержимое элемента &lt;cite&gt;&lt;/cite&gt; выделяется наклонным шрифтом.
+</p>
+<p>
+Если по правилу форматирования многострочного текста элементы &lt;q&gt;&lt;/q&gt; поставить на отдельные строки от текста цитаты, то браузер отделит двойные кавычки от текста цитаты пробелами. Поэтому необходимо отступить от общего правила, чтобы браузер отображал цитату нормально.
+</p>
+<h4>Элементы &lt;dfn&gt;&lt;/dfn&gt;, &lt;abbr&gt;&lt;/abbr&gt; и &lt;time&gt;&lt;/time&gt;</h4>
+<p>
+	Элемент &lt;dfn&gt;&lt;/dfn&gt; определяет содержимое своего контейнера. Определение выделяется наклонным текстом:<br>
+A <dfn>tooltip</dfn> is a pop-up box that provides information about the item that the mouse is hovering over.
+</p>
+<div>
+	Элемент &lt;abbr&gt;&lt;/abbr&gt; служит для указания на сокращение или аббревиатуру. Аттрибут <code>title</code> позволяет показать во всплывающем примечании полную расшифровку сокращения:<br>
+This year's
+<abbr title="World Wide Web Consortium">W3C</abbr>
+barbeque fundraiser is scheduled for
+<time datetime="12:00">noon</time> on
+<time datetime="2018-09-28">Friday, September 28</time>.
+Grillmaster Tim Berners-Lee will be flipping burgers.
+<div>В данном примере в коде время и дата окружены элементами &lt;time&gt;&lt;/time&gt; в которых атрибут <code>datetime</code> позволяет указать время и дату для браузера, чтобы использовать время и дату в коде CSS и JavaScript для манипуляций со значениями времени и даты.</div>
+</div>
+<p>Время и дата могут указываться в одной строчке кода, разделенные буквой T:<br>
+<code>Join us for a rockin' &lt;time datetime="2019-01-01T00:00"&gt;New Year's
+Eve&lt;/time&gt; "Bingo Bash" at the Seniors Center.
+All you can drink spiced apple cider!</code>
+</p>
+<h4>Элемент &lt;wbr&gt;&lt;/wbr&gt;</h4>
+<p>
+	Элемент &lt;wbr&gt;&lt;/wbr&gt; позволяет поставить в длинное слово или веб-адрес потенциальные точки разрыва строки, чтобы контролируемо переносить части слова, если ширина браузера меняется:
+www<wbr>.chessgeeks<wbr>.com<wbr>/caughtoncamera<wbr>/bronstein.mp4
+</p>
+<h4>Элемент &lt;mark&gt;&lt;/mark&gt;</h4>
+<p>
+	Элемент &lt;mark&gt;&lt;/mark&gt; позволяет выделить слова или часть фразы желтым цветом:<br>
+Homonymic advertising slogan for Mountain Dew:<br>
+<mark>Do</mark> the <mark>Dew</mark>!
+</p>
+<h4>Элементы &lt;strong&gt;&lt;/strong&gt;, &lt;em&gt;&lt;/em&gt; и &lt;small&gt;&lt;/small&gt;</h4>
+<p>
+Do you ever feel tired?<br>
+Don't let lack of sleep get you down. <strong>Fight back!</strong><br>
+Buzz Energy Drink* will get your heart racing and keep you
+<em>going strong</em>!
+</p>
+<small>* May cause diarrhea, acute bleeding, and/or sudden death.
+Ask your doctor if it's right for you.</small>
+<h4>Элемент &lt;s&gt;&lt;/s&gt;</h4>
+<p>Элемент &lt;s&gt;&lt;/s&gt; указывает на нечто, что больше не правильно или не соответствует действительности:<br>
+	Corporate lobbyists pay huge sums of money to politicians in order to get them elected and gain
+access after they’re elected. <s>But in America, democracy wins by giving equal say to everyday citizens.</s><br>
+Раньше, элемент &lt;s&gt;&lt;/s&gt; <del>служил для указания на удаленный текст при редактировании,</del> но теперь эту роль выполняет элемент &lt;del&gt;&lt;/del&gt;.
+</p>
+<h4>Элементы &lt;b&gt;&lt;/b&gt;, &lt;u&gt;&lt;/u&gt; и &lt;i&gt;&lt;/i&gt;</h4>
+<p>
+Элементы &lt;b&gt;&lt;/b&gt;, &lt;u&gt;&lt;/u&gt; и &lt;i&gt;&lt;/i&gt; больше не должны использоваться для выделения текста жирным шрифтом, подчернутым шрифтом и наклонным шрифтом. Теперь для этих целей необходимо использовать другие элементы (&lt;strong&gt;&lt;/strong&gt;, &lt;span&gt;&lt;/span&gt; и &lt;em&gt;&lt;/em&gt;) и/или <span class="underlined">правила CSS</span>.
+</p>
+<h4>Элемент &lt;span&gt;&lt;/span&gt;</h4>
+<p>
+	Элемент &lt;span&gt;&lt;/span&gt; похож по применению на элемент &lt;div&gt;&lt;/div&gt;, но отличается тем, что это фразовый элемент, а не блочный элемент.
+</p>
+
+</body> 
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html> <!--  -->
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="author" content="Jan Toleu">
+	<meta name="description" content="HTML tutorial">
+	<meta name="keywords" content="content model, block element, phrasing element, character reference">
+	<title>Правила CSS</title>
+  <style>
+    ul {list-style-type: circle;}
+    ul ul {list-style-type: square;}
+    ol {list-style-type: upper-roman;}
+    ol ol {list-style-type: upper-alpha;}
+    ol ol ol {list-style-type: decimal;}
+    .fig {
+    border: solid crimson;
+    padding: 6px;
+    }
+    .center, figcaption {text-align: center;}
+      body {background-color: lightyellow;}
+      header {background-color: powderblue;}
+      section > h2 {background-color: palegreen;}
+      aside > h3 {margin: 0;}
+      aside {
+        border: thin dashed red;
+        color: red;
+        background-color: white;
+        float: right;
+        width: 200px;
+        margin: 5px;
+        padding: 10px;
+      }
+      address {display: inline;}
+      code {background-color: lightgreen;}
+
+  </style>
+</head>
+<body>
+<h2>Списки</h2>
+<h3>Маркированный список (unordered list)</h3>
+<pre>
+  &lt;style&gt;
+    ul {list-style-type: circle;}
+    ul ul {list-style-type: square;}
+  &lt;/style&gt;<br>
+  &lt;ul&gt;
+    &lt;li&gt;
+     Morning
+      &lt;ul&gt;
+        &lt;li&gt;Wake up at 9ish.&lt;/li&gt;
+        &lt;li&gt;Go to school.&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      Afternoon
+      &lt;ul&gt;
+        &lt;li>Kick back and relax.&lt;/li&gt;
+        &lt;li&gt;
+          Lecture period - not much prepared, so allow<br>          students to work on their homework during 
+          "hands-on" time in the lab.
+        &lt;/li&gt;
+        &lt;li&gt;Go home and watch YouTube videos.&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Evening&lt;/li&gt;
+  &lt;/ul&gt;
+</pre>
+<ul>
+<li>
+Morning
+<ul>
+<li>Wake up at 9ish.</li>
+<li>Go to school.</li>
+</ul>
+</li>
+<li>
+Afternoon
+<ul>
+<li>Kick back and relax.</li>
+<li>
+Lecture period - not much prepared, so allow students to
+work on their homework during "hands-on" time in the lab.
+</li>
+<li>Go home and watch YouTube videos.</li>
+</ul>
+</li>
+<li>Evening</li>
+</ul>
+<h3>Нумерованный список (ordered list)</h3>
+<pre>
+  &lt;style&gt;
+    ol {list-style-type: upper-roman;}
+    ol ol {list-style-type: upper-alpha;}
+    ol ol ol {list-style-type: decimal;}
+  &lt;/style&gt;
+</pre>
+<ol>
+<li>Introduction</li>
+<li>
+Main body
+<ol>
+<li>Ice-breaker cartoons</li>
+<li>
+Examples
+<ol>
+<li>Personal experiences</li>
+<li>What friends say</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>Appendages</li>
+</ol>
+<p>
+	Наиболее популярными значениями для свойства <code>list-style-type</code> для упорядоченного списка являются:
+	<code>decimal, upper-alpha, lower-alpha, upper-roman, lower-roman.</code>
+</p>
+<p>
+	Для элементов <code>&lt;ol&gt;&lt;/ol&gt;</code> иногда используют атрибуты <code>reversed</code> и <code>start</code>
+
+<h2>Элемент Рисунок (&lt;figure&gt;&lt;/figure&gt;)</h2>
+<h3>Элемент &lt;figure&gt;&lt;/figure&gt; с фрагментом кода</h3>
+<div>
+	<figure class=fig>
+<figcaption>Распечатка программы: Мошенничество с кредитной картой, в котором используется повторяющееся всплывающее уведомление</figcaption>
+<pre><code>while (true) {
+  alert("Ваша финансовая документация была взломана.\n" +
+  " Для того, чтобы исправить данную проблему перейдите на<br>  веб-сайт http://www.easyCredit.com" +
+  " и введите информацию по вашей кредитной карте.");
+}</code></pre>
+</figure>
+<p>
+	Для элемента <code>figure</code> браузер генерирует поля <code>margin</code> слева и справа.
+</div>
+<h3>Элемент &lt;figure&gt;&lt;/figure&gt; с изображением</h3>
+<div>
+	<figure class=center>
+<img src="pictures/finalTag.png" width=600 alt="&lt;/life&gt; headstone">
+<figcaption>Последний тег HTML</figcaption>
+</figure>
+</div>
+<h2>Организационные элементы</h2>
+<ul>
+	<li>section</li>
+	<li>article</li>
+	<li>aside</li>
+	<li>nav</li>
+	<li>header</li>
+	<li>footer</li>
+</ul>
+<p>Обычно нет необходимости использовать организационные элементы для небольших веб-страниц, но для многостраничных веб-сайтов их следует использовать согласованно. Организационные элементы являются блочными элементами, то есть расширяются на всю ширину содержащего их контейнера. Это можно увидеть по зеленому цвету фона заголовков на рисунке ниже, который показывает, что содержимое контейнеров <code>&lt;section&gt;&lt;/section&gt;</code> растягивается на всю ширину содержащего их контейнера <code>&lt;article&gt;&lt;/article&gt;</code></p>
+<p>
+  Контейнер <code>&lt;section&gt;&lt;/section&gt;</code> тематически группирует вместе раздел веб-страницы. То есть содержимое контейнера связано общей темой.<br>
+  Обычно, контейнер содержит в себе заголовок и один или несколько параграфов или списков, объединенных одной тематикой, указанной в заголовке.
+</p>
+<p>
+  Контейнер <code>&lt;article&gt;&lt;/article&gt;</code> служит для группирования вместе одного или нескольких контейнеров <code>&lt;section&gt;&lt;/section&gt;</code> таким образом, что группа таких разделов формирует отдельную независимую часть веб-страницы.
+</p>
+<p>Следующий код демонстрирует все организационные элементы:</p>
+<div>
+  <pre><code>
+    &lt;!DOCTYPE html>
+    &lt;html lang="en">
+    &lt;head>
+    &lt;meta charset="utf-8">
+    &lt;meta name= "author" content="John Dean">
+    &lt;title>Mangie's List&lt;/title>
+    &lt;style>
+      body {background-color: lightyellow;}
+      header {background-color: powderblue;}
+      section > h2 {background-color: palegreen;}
+      aside > h3 {margin: 0;}
+      aside {
+        border: thin dashed red;
+        color: red;
+        background-color: white;
+        float: right;
+        width: 200px;
+        margin: 5px;
+        padding: 10px;
+      }
+      address {display: inline;}
+    &lt;/style>
+    &lt;/head><br>
+  &lt;body>
+  &lt;header>
+    &lt;h1>Mangie's List&lt;/h1>
+    &lt;h2>&lt;q>Simply the best reviews anywhere!&lt;/q>&lt;/h2>
+  &lt;/header>
+  &lt;nav>
+    &lt;a href="#dining">Dining&lt;/a> | &lt;a href="#clothing">Clothing&lt;/a>
+  &lt;/nav>
+  &lt;article>
+    &lt;section>
+      &lt;aside>
+        &lt;h3>Casey's Special&lt;/h3>
+        Half-price hot dogs when rotisseried more than 24 hours!
+      &lt;/aside>
+      &lt;h2 id="dining">Dining&lt;/h2>
+      &lt;ol>
+        &lt;li>China Star&lt;/li>
+        &lt;li>Casey's General Store&lt;/li>
+      &lt;/ol>
+    &lt;/section>
+    &lt;section>
+      &lt;h2 id="clothing">Clothing&lt;/h2>
+      &lt;ol>
+        &lt;li>Eddie Bauer&lt;/li>
+        &lt;li>Kansas Speedway Boutique&lt;/li>
+        &lt;li>Casey's General Store&lt;/li>
+      &lt;/ol>
+    &lt;/section>
+  &lt;/article>
+  &lt;footer>
+    Questions? Email &lt;address>mangie@gmail.com&lt;/address>.
+  &lt;/footer>
+  &lt;/body>
+  &lt;/html>
+</code></pre>
+<figure class="fig">
+  <figcaption><strong>Вышеприведенный код генерирует такую страницу</strong></figcaption>
+  <header>
+    <h1>Mangie's List</h1>
+    <h2><q>Simply the best reviews anywhere!</q></h2>
+  </header>
+  <nav>
+    <a href="#dining">Dining</a> | <a href="#clothing">Clothing</a>
+  </nav>
+  <article>
+    <section>
+      <aside>
+        <h3>Casey's Special</h3>
+        Half-price hot dogs when rotisseried more than 24 hours!
+      </aside>
+      <h2 id="dining">Dining</h2>
+      <ol>
+        <li>China Star</li>
+        <li>Casey's General Store</li>
+      </ol>
+    </section>
+    <section>
+      <h2 id="clothing">Clothing</h2>
+      <ol>
+        <li>Eddie Bauer</li>
+        <li>Kansas Speedway Boutique</li>
+        <li>Casey's General Store</li>
+      </ol>
+    </section>
+  </article>
+  <footer>
+    Questions? Email <address>mangie@gmail.com</address>.
+  </footer>
+</figure>
+  <p>
+    Элемент <code>&lt;aside&gt;&lt;/aside&gt;</code> группирует вместе информацию, которая имеет отношение к следующему за ним элементу, но не является частью основного содержания раздела. Обычно данный элемент располагается справа или слева от основного текста. В вышеприведенном примере этот элемент находится справа от соответствующего раздела и выделен пунктирной красной границей. Несмотря на то, что данный элемент является блочным, браузер показывает его в компактном виде. Это достигается благодаря следующему участку кода CSS:
+<code><pre>
+      aside {
+        border: thin dashed red;
+        color: red;
+        background-color: white;
+        float: right;
+        width: 200px;
+        margin: 5px;
+        padding: 10px;
+      }
+</code></pre>
+Строчка <code>float: right;</code> помещает элемент <code>&lt;aside&gt;&lt;/aside&gt;</code> справа от остальных элементов контейнера <code>&lt;section&gt;&lt;/section&gt;</code>, а строчка <code>width: 200px;</code> уменьшает ширину данного элемента до 200 пикселей.
+  </p>
+  <p>
+    Элемент <code>&lt;nav&gt;&lt;/nav&gt;</code> использует элементы <code>&lt;a&gt;&lt;/a&gt;</code> для навигации по веб-странице
+  </p>
+    <p>
+    Элемент <code>&lt;footer&gt;&lt;/footer&gt;</code> часто содержит в себе такие данные, как авторское право, информация об авторе, связанные ссылки и т.д. 
+    В данном элементе часто располагают элемент <code>&lt;address&gt;&lt;/address&gt;</code>, который предоставляет контактную информацию для всей веб-страницы. Если элемент элемент <code>&lt;address&gt;&lt;/address&gt;</code> размещают внутри элемента <code>&lt;article&gt;&lt;/article&gt;</code>, то контактная информация дается только для статьи <code>&lt;article&gt;&lt;/article&gt;</code>.
+    Сам по себе элемент <code>&lt;address&gt;&lt;/address&gt;</code>  является блочным элементом и чтобы его поместить в ряд с другими элементами, необходимо изменить его поведение.
+<code><pre>
+      address {display: inline;}
+</code></pre>
+  </p>
+<p>
+  Селекторы, которые обозначают любого потомка данного элемента, просто отделяются пробелом от селектора предка.
+  Селекторы, которые обозначают ребенка данного элемента, отделяются от селектора родительского элемента знаком &gt; (combinator) отделенного от окружающих селекторов пробелами:<br>
+  <code>section > h2 {background-color: palegreen;}</code>
+</p>
+<p>
+  Если элемент <code>&lt;a&gt;&lt;/a&gt;</code> ссылается на другую страницу, а не на место в текущей странице, то в первом теге этого элемента необходимо поместить атрибут <code>target</code> вместе с его значением <code>"_self"</code> или <code>"_blank"</code>. Значение <code>"_self"</code> делает переход по данной ссылке (по умолчанию) в том же окне браузера, а значение <code>"_blank"</code> приводит к тому, что открывается новое окно браузера.
+</p>
+
+</body> 
+</html>
